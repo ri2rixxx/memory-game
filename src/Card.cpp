@@ -6,7 +6,6 @@
 
 namespace fs = std::filesystem;
 
-// Конструктор по умолчанию
 Card::Card() 
     : id(-1), symbol(""), isFlipped(false), isMatched(false), 
       theme(CardTheme::ANIMALS), isImage(false) {
