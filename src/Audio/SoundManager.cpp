@@ -25,7 +25,7 @@ SoundManager::SoundManager() : volume(50.0f), soundEnabled(true) {
     for (const auto& [soundName, filePath] : soundFiles) {
         std::cout << "  🔍 " << soundName << " -> " << filePath;
         
-        // 1. Проверяем существует ли файл
+        // Проверяем существует ли файл
         std::ifstream testFile(filePath, std::ios::binary);
         if (!testFile.is_open()) {
             std::cout << " ❌ ФАЙЛ НЕ НАЙДЕН" << std::endl;
@@ -34,7 +34,7 @@ SoundManager::SoundManager() : volume(50.0f), soundEnabled(true) {
         }
         testFile.close();
         
-        // 2. Пробуем загрузить через SFML
+        // Пробуем загрузить через SFML
         sf::SoundBuffer buffer;
         if (buffer.loadFromFile(filePath)) {
             // Успешно загрузили из файла
@@ -94,11 +94,11 @@ SoundManager::SoundManager() : volume(50.0f), soundEnabled(true) {
 }
 
 SoundManager::~SoundManager() {
-    // Автоматическая очистка
+
 }
 
 void SoundManager::createFallbackSound(const std::string& name) {
-    // Создаем простой программный звук ТОЛЬКО если не удалось загрузить из файла
+    // Создаем простой программный звук только если не удалось загрузить из файла
     
     float frequency = 440.0f;
     float duration = 0.3f;
