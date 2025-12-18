@@ -40,18 +40,15 @@ public:
     std::vector<GameRecord> getTopScores(int limit = 10);
     std::vector<GameRecord> getPlayerHistory(const std::string& playerName, int limit = 10);
     
-    // Методы для пользователей (можно вынести в UserManager)
     bool createUser(const std::string& username, const std::string& password, 
                     const std::string& email, std::string& errorMsg);
     bool authenticateUser(const std::string& username, const std::string& password, 
                          std::string& errorMsg);
     bool updateUserStats(int userId, int score, bool won, double playTime);
     
-    // Вспомогательные методы
     std::string getLastError() const;
     void displayLeaderboard();
     
-    // Для совместимости с существующим кодом
     std::vector<GameRecord> getTopPlayers(int limit = 10) {
         return getTopScores(limit);
     }
