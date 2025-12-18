@@ -113,9 +113,6 @@ PGresult* Database::executeQueryWithResult(const std::string& query) {
 bool Database::initialize() {
     std::cout << "Initializing PostgreSQL database..." << std::endl;
     
-    // Таблицы уже создаются через init.sql в Docker
-    // Просто проверяем подключение и существование таблиц
-    
     if (!isConnected()) {
         if (!connect()) return false;
     }
@@ -140,7 +137,6 @@ bool Database::initialize() {
     if (!tableExists) {
         std::cout << "⚠ Tables don't exist, running initialization..." << std::endl;
         
-        // создать таблицы здесь, если init.sql не сработал
         const char* createTables = 
             "CREATE TABLE IF NOT EXISTS games ("
             "id SERIAL PRIMARY KEY,"
@@ -445,8 +441,7 @@ bool Database::authenticateUser(const std::string& username, const std::string& 
     }
     
     std::string dbPassword = PQgetvalue(result, 0, 1);
-    // Здесь должна быть проверка хеша пароля
-    bool authenticated = (dbPassword == password); // Упрощенно
+    bool authenticated = (dbPassword == password);
     
     if (!authenticated) {
         errorMsg = "Invalid password";
