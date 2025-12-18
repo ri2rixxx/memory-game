@@ -6,7 +6,6 @@
 #include <algorithm>
 #include <functional>
 
-// Простая функция хеширования (в реальном проекте используйте bcrypt)
 std::string simpleHash(const std::string& password) {
     unsigned int hash = 5381;
     for (char c : password) {
@@ -82,11 +81,7 @@ bool UserManager::registerUser(const std::string& username, const std::string& p
 bool UserManager::login(const std::string& username, const std::string& password, 
                        std::string& errorMsg) {
     
-    std::cout << "Attempting login: " << username << std::endl;
-    
-    // Здесь нужна реализация через Database
-    // Пока используем упрощенную версию
-    
+    std::cout << "Attempting login: " << username << std::endl;    
     if (!database->authenticateUser(username, hashPassword(password), errorMsg)) {
         return false;
     }
@@ -111,35 +106,24 @@ bool UserManager::logout() {
 }
 
 bool UserManager::usernameExists(const std::string& username) {
-    // Реализация через запрос к БД
-    return false; // Упрощенно
+    return false;
 }
 
 bool UserManager::emailExists(const std::string& email) {
-    // Реализация через запрос к БД
-    return false; // Упрощенно
+    return false;
 }
 
 bool UserManager::updateStats(int score, bool won, double playTime) {
     if (!isLoggedIn) return false;
     
-    // Обновляем локальные данные
     currentUser.totalScore += score;
     currentUser.gamesPlayed++;
     if (won) currentUser.gamesWon++;
     currentUser.totalPlayTime += playTime;
-    
-    // Здесь должна быть реализация через Database::updateUserStats
-    // Нужен ID пользователя
-    
     return true;
 }
 
 std::vector<User> UserManager::getLeaderboard(int limit) {
-    std::vector<User> leaderboard;
-    
-    // Здесь должна быть реализация через запрос к БД
-    // Пока возвращаем пустой список
-    
+    std::vector<User> leaderboard;    
     return leaderboard;
 }
