@@ -124,10 +124,8 @@ void AchievementManager::addPlayedTheme(const std::string& theme) {
     std::cout << "🎨 Adding theme to stats: " << theme << std::endl;
     playedThemes[theme] = true;
     
-    // Сохраняем статистику сразу
     saveAchievementStats();
     
-    // Проверяем достижение "Theme Collector"
     if (playedThemes.size() >= 5) {
         std::cout << "🎯 Theme Collector condition met! " 
                   << playedThemes.size() << "/5 themes" << std::endl;
@@ -165,7 +163,6 @@ void AchievementManager::addPlayedDifficulty(const std::string& difficulty) {
     // Сохраняем статистику сразу
     saveAchievementStats();
     
-    // Проверяем достижение "All Difficulties"
     if (playedDifficulties.size() >= 4) {
         std::cout << "🎯 All Difficulties condition met! " 
                   << playedDifficulties.size() << "/4 difficulties" << std::endl;
@@ -184,7 +181,6 @@ void AchievementManager::addPlayedDifficulty(const std::string& difficulty) {
         }
     }
     
-    // Проверяем "Difficulty Master" для Expert
     if (difficulty == "Expert") {
         std::cout << "🎯 Expert difficulty played!" << std::endl;
         
@@ -206,7 +202,6 @@ void AchievementManager::addPlayedDifficulty(const std::string& difficulty) {
 void AchievementManager::initializeAchievements() {
     achievements.clear();
     
-    // Игровые достижения
     achievements.emplace_back(
         AchievementType::FIRST_GAME, 
         "First Step", 
@@ -364,7 +359,6 @@ void AchievementManager::checkGameAchievements(int score, int moves, int totalPa
     std::cout << "Score: " << score << ", Moves: " << moves << ", Pairs: " << totalPairs << std::endl;
     std::cout << "Time: " << time << "s, Difficulty: " << difficulty << ", Theme: " << theme << std::endl;
     
-    // Первая игра (всегда разблокируем, если это не гость)
     updateAchievement(AchievementType::FIRST_GAME);
     
     // Набор очков (используем прогресс)
